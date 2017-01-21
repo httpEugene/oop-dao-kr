@@ -1,12 +1,19 @@
 <div class="container">
-    <h1 class="page-header">Students <span class="btn btn-sm" ng-click="home.addStudent()">Add</span>  <sorting-criteria></sorting-criteria></h1>
+    <div class="page-header">
+        <h1><p class="text-center">Applicants</p></h1>
+        <hr>
+        <div style="float: right;">
+            <span class="btn btn-success" ng-click="home.addStudent()">Add</span>
+            <sorting-criteria></sorting-criteria>
+        </div>
+
     <table class="table table-stripped">
         <thead>
         <tr>
             <th ng-repeat="header in home.headers">
                 {{::header.title}}
             </th>
-            <th>Actions</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -25,7 +32,7 @@
                     </span>
             </td>
             <td>
-                <span class="btn btn-info"
+                <span class="btn btn-warning"
                    ng-click="home.addStudent(student)">
                     Edit
                 </span>

@@ -19,8 +19,8 @@ angular.module('app')
     };
 })
 .constant('CRITERIA', [
-    {title: 'All Students', path: '/'},
-    {title: 'Best of 2 Course', path: '/best'},
+    {title: 'All Aplicants', path: '/'},
+    {title: 'Enrolled', path: '/best'},
     {title: 'Good Learning Foreign Students', path: '/good'}
 ])
 .constant('HEADERS', [{
@@ -60,7 +60,7 @@ angular.module('app')
 })
 .controller('SortingCriteriaController', function SortingCriteriaController(CRITERIA, $rootScope) {
     this.criteria = CRITERIA;
-    this.selected = CRITERIA[0];
+    [this.selected] = CRITERIA;
 
     this.onCriteriaChange = function onCriteriaChange(selected) {
         $rootScope.$broadcast('criteria-selected', {path: selected.path});
