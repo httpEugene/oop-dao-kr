@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.List;
 import java.util.OptionalDouble;
 
@@ -59,7 +58,8 @@ public class Student {
                    int course,
                    int gender,
                    Country country,
-                   String identity) {
+                   String identity,
+                   List<Mark> marks) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -67,6 +67,7 @@ public class Student {
         this.gender = gender;
         this.country = country;
         this.identity = identity;
+        this.marks = marks;
     }
 
     public long getId() {

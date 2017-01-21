@@ -15,13 +15,24 @@
                     <span ng-switch on="header.field">
                         <span ng-switch-when="country">{{::student.country.name}}</span>
                         <span ng-switch-when="gender">{{::student[header.field] ? 'female' : 'male'}}</span>
-                        <span ng-switch-when="score" uib-tooltip uib-tooltip-template="'view/marks.html'">{{::student.score | limitTo:3}}</span>
+                        <span ng-switch-when="score"
+                              uib-tooltip
+                              uib-tooltip-template="'view/marks.html'"
+                              ng-click="home.changeScore(student)">
+                              {{::student.score | limitTo:3}}
+                        </span>
                         <span ng-switch-default>{{::student[header.field]}}</span>
                     </span>
             </td>
             <td>
-                <span class="btn btn-info" ng-click="home.addStudent(student)">Edit</span>
-                <span class="btn btn-danger" ng-click="home.deleteStudent(student)">Delete</span>
+                <span class="btn btn-info"
+                   ng-click="home.addStudent(student)">
+                    Edit
+                </span>
+                <span class="btn btn-danger"
+                   ng-click="home.deleteStudent(student)">
+                    Delete
+                </span>
             </td>
         </tr>
         </tbody>
