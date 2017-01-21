@@ -7,7 +7,7 @@
             <sorting-criteria></sorting-criteria>
         </div>
 
-    <table class="table table-stripped">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th ng-repeat="header in home.headers">
@@ -22,11 +22,12 @@
                     <span ng-switch on="header.field">
                         <span ng-switch-when="country">{{::student.country.name}}</span>
                         <span ng-switch-when="gender">{{::student[header.field] ? 'female' : 'male'}}</span>
-                        <span ng-switch-when="score"
+                        <span class="btn btn-success "
+                              ng-switch-when="score"
                               uib-tooltip
                               uib-tooltip-template="'view/marks.html'"
                               ng-click="home.changeScore(student)">
-                              {{::student.score | limitTo:3}}
+                              {{::student.score | limitTo:5}}
                         </span>
                         <span ng-switch-default>{{::student[header.field]}}</span>
                     </span>

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.OptionalDouble;
 
 @Entity
 @Table(name = "students")
@@ -27,8 +26,8 @@ public class Student {
     private String middleName;
 
     @NotNull
-    @Column(name = "course")
-    private int course;
+    @Column(name = "phone")
+    private String phone;
 
     @NotNull
     @Column(name = "gender")
@@ -55,7 +54,7 @@ public class Student {
     public Student(String firstName,
                    String lastName,
                    String middleName,
-                   int course,
+                   String phone,
                    int gender,
                    Country country,
                    String identity,
@@ -63,7 +62,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
-        this.course = course;
+        this.phone = phone;
         this.gender = gender;
         this.country = country;
         this.identity = identity;
@@ -102,12 +101,12 @@ public class Student {
         this.middleName = middleName;
     }
 
-    public int getCourse() {
-        return course;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setCourse(int course) {
-        this.course = course;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getGender() {
@@ -150,12 +149,12 @@ public class Student {
     @JsonProperty(value = "score")
     public double getScore() {
         if(marks != null) {
-            OptionalDouble average = marks
+            double sum = marks
                     .stream()
                     .mapToDouble(Mark::getMark)
-                    .average();
+                    .sum();
 
-            return average.isPresent() ? average.getAsDouble() : 0;
+            return sum;
         }
 
         return 0;

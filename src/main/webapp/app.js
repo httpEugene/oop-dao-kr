@@ -20,8 +20,8 @@ angular.module('app')
 })
 .constant('CRITERIA', [
     {title: 'All Aplicants', path: '/'},
-    {title: 'Enrolled', path: '/best'},
-    {title: 'Good Learning Foreign Students', path: '/good'}
+    {title: 'Ukrainian Enrolled', path: '/best'},
+    {title: 'Foreign Enrolled', path: '/good'}
 ])
 .constant('HEADERS', [{
         title: 'ID',
@@ -40,7 +40,7 @@ angular.module('app')
         field: 'score'
     }, {
         title: 'Phone number',
-        field: 'course'
+        field: 'phone'
     }, {
         title: 'Gender',
         field: 'gender'

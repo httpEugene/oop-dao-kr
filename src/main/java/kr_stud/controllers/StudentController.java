@@ -29,8 +29,8 @@ public class StudentController {
 
     @RequestMapping(value = "/best", produces = "application/json")
     @ResponseBody
-    public List<Student> getBestOfSecondCourse() {
-        return (List<Student>) studentDao.findBestOfSecondCourse();
+    public List<Student> findAllApplicantsWhoEnrolled() {
+        return (List<Student>) studentDao.findAllApplicantsWhoEnrolled();
     }
 
     @RequestMapping(value = "/good", produces = "application/json")
