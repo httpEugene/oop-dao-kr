@@ -1,5 +1,5 @@
-<p ng-if="student.marks.length"
-   ng-repeat="mark in student.marks track by $index">
+<p ng-if="applicant.marks.length"
+   ng-repeat="mark in applicant.marks track by $index">
     {{mark.subject.name}}: {{mark.mark}}
 </p>
-<p ng-if="!student.marks.length">Student has no marks</p>
+<p ng-if="!applicant.marks.length">Applicant has no marks</p>

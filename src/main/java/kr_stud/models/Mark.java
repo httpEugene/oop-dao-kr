@@ -1,8 +1,6 @@
 package kr_stud.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,9 +14,9 @@ public class Mark {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "applicant_id")
     @JsonBackReference
-    private Student student;
+    private Applicant applicant;
 
     @NotNull
     @ManyToOne
@@ -36,8 +34,8 @@ public class Mark {
         this.id = id;
     }
 
-    public Mark(Student student, Subject subject, int mark) {
-        this.student = student;
+    public Mark(Applicant applicant, Subject subject, int mark) {
+        this.applicant = applicant;
         this.subject = subject;
         this.mark = mark;
     }
@@ -50,12 +48,12 @@ public class Mark {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public Applicant getApplicant() {
+        return applicant;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
     }
 
     public Subject getSubject() {

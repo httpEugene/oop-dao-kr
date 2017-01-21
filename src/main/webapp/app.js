@@ -20,8 +20,8 @@ angular.module('app')
 })
 .constant('CRITERIA', [
     {title: 'All Aplicants', path: '/'},
-    {title: 'Ukrainian Enrolled', path: '/best'},
-    {title: 'Foreign Enrolled', path: '/good'}
+    {title: 'Ukrainian Enrolled', path: '/enrolled/ukrainian'},
+    {title: 'Foreign Enrolled', path: '/enrolled/foreign'}
 ])
 .constant('HEADERS', [{
         title: 'ID',
@@ -70,32 +70,32 @@ angular.module('app')
     var vm = this;
 
     vm.path = '/';
-    vm.students = [];
+    vm.applicant = [];
     vm.headers = HEADERS;
 
-    vm.addStudent = addStudent;
-    vm.deleteStudent = deleteStudent;
+    vm.addApplicant = addApplicant;
+    vm.deleteApplicant = deleteApplicant;
     vm.changeScore = changeScore;
 
     $scope.$on('criteria-selected', onCriteriaChange)
 
-    getStudents();
+    getApplicants();
 
-    function addStudent(student) {
+    function addApplicant(applicant) {
         var modal = $uibModal.open({
-            templateUrl: 'view/student.html',
-            controller: function($scope, $uibModalInstance, student, countries, $http) {
-                $scope.student = student;
-                $scope.student.gender = $scope.student.gender || 0;
-                $scope.student.country = $scope.student.country || countries[0];
+            templateUrl: 'view/applicant.html',
+            controller: function($scope, $uibModalInstance, applicant, countries, $http) {
+                $scope.applicant = applicant;
+                $scope.applicant.gender = $scope.applicant.gender || 0;
+                $scope.applicant.country = $scope.applicant.country || countries[0];
                 $scope.countries = countries;
-                $scope.type = student ? 'Edit' : 'Add';
+                $scope.type = applicant ? 'Edit' : 'Add';
 
                 $scope.submit = submit;
                 $scope.close = close;
 
                 function submit() {
-                    $http.post('/students/', $scope.student)
+                    $http.post('/applicants/', $scope.applicant)
                         .then(function(response) {
                             $uibModalInstance.close(response.data);
                         });
@@ -106,8 +106,8 @@ angular.module('app')
                 }
             },
             resolve: {
-                student: function() {
-                    return student || {};
+                applicant: function() {
+                    return applicant || {};
                 },
                 countries: function($http) {
                     return $http.get('/countries/').then(function(response) {
@@ -118,21 +118,21 @@ angular.module('app')
         });
 
         modal.result.then(function() {
-            getStudents();
+            getApplicants();
         });
     }
 
-    function changeScore(student) {
+    function changeScore(applicant) {
         var modal = $uibModal.open({
             templateUrl: 'view/scores.html',
-            controller: function($scope, $uibModalInstance, student, subjects, $http) {
-                $scope.student = student;
+            controller: function($scope, $uibModalInstance, applicant, subjects, $http) {
+                $scope.applicant = applicant;
                 $scope.subjects = subjects;
 
                 $scope.mark = {
-                    student: student
+                    applicant: applicant
                 };
-                $scope.marks = student.marks;
+                $scope.marks = applicant.marks;
                 $scope.create = create;
                 $scope.close = close;
                 $scope.removeScore = removeScore;
@@ -142,7 +142,7 @@ angular.module('app')
                         .then(function(response) {
                             $scope.mark.subject = null;
                             $scope.mark.mark = undefined;
-                            return $http.get('/students/' + student.id)
+                            return $http.get('/applicants/' + applicant.id)
                         })
                         .then((response) => {
                             $scope.marks = response.data.marks;
@@ -164,8 +164,8 @@ angular.module('app')
                 }
             },
             resolve: {
-                student: function() {
-                    return student || {};
+                applicant: function() {
+                    return applicant || {};
                 },
                 subjects: function($http) {
                     return $http.get('/subjects/').then(function(response) {
@@ -175,28 +175,28 @@ angular.module('app')
             }
         });
 
-        modal.result.then(getStudents, getStudents);
+        modal.result.then(getApplicants, getApplicants);
     }
 
 
 
-    function deleteStudent(student) {
-        $http.delete('/students/' + student.id)
-            .then(studentDeleted)
+    function deleteApplicant(applicant) {
+        $http.delete('/applicants/' + applicant.id)
+            .then(applicantDeleted)
             .catch(serverError);
 
-        function studentDeleted(response) {
-            getStudents();
+        function applicantDeleted(response) {
+            getApplicants();
         }
     }
 
-    function getStudents() {
-        $http.get('/students' + vm.path)
-            .then(gotStudents)
+    function getApplicants() {
+        $http.get('/applicants' + vm.path)
+            .then(gotApplicants)
             .catch(serverError);
 
-        function gotStudents(response) {
-            vm.students = response.data;
+        function gotApplicants(response) {
+            vm.applicants = response.data;
         }
     }
 
@@ -206,7 +206,7 @@ angular.module('app')
 
     function onCriteriaChange(event, data) {
         vm.path = data.path;
-        getStudents();
+        getApplicants();
     }
 })
 .config(function($stateProvider, $locationProvider, $urlRouterProvider) {
@@ -217,9 +217,6 @@ angular.module('app')
                 "": {
                     templateUrl: 'view/home.html',
                     controller: 'HomeController as home'
-                },
-                "navbar": {
-                    templateUrl: 'view/navbar.html'
                 }
             }
         });

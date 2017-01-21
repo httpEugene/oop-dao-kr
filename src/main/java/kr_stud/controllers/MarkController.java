@@ -14,10 +14,10 @@ public class MarkController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public Mark createMark(@RequestBody Mark student) {
-        markDao.save(student);
+    public Mark createMark(@RequestBody Mark applicant) {
+        markDao.save(applicant);
 
-        return student;
+        return applicant;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")

@@ -19,7 +19,7 @@ public class Country {
 
     @OneToMany(mappedBy = "country")
     @JsonBackReference
-    private List<Student> students;
+    private List<Applicant> applicant;
 
     public Country() {
     }
@@ -48,11 +48,11 @@ public class Country {
         this.name = value;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Applicant> getApplicant() {
+        return applicant;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setApplicant(List<Applicant> applicant) {
+        this.applicant = applicant;
     }
 }

@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "applicants")
+public class Applicant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -41,17 +41,17 @@ public class Student {
     @Column(name = "identity", unique = true)
     private String identity;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "applicant")
     private List<Mark> marks;
 
-    public Student() {
+    public Applicant() {
     }
 
-    public Student(long id) {
+    public Applicant(long id) {
         this.id = id;
     }
 
-    public Student(String firstName,
+    public Applicant(String firstName,
                    String lastName,
                    String middleName,
                    String phone,

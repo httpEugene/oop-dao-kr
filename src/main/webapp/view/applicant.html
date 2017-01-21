@@ -2,41 +2,41 @@
     <div class="form-group">
         <input type="text"
                class="form-control"
-               ng-model="student.identity"
+               ng-model="applicant.identity"
                placeholder="Identity">
     </div>
 
     <div class="form-group">
         <input type="text"
                class="form-control"
-               ng-model="student.firstName"
+               ng-model="applicant.firstName"
                placeholder="First Name">
     </div>
 
     <div class="form-group">
         <input type="text"
                class="form-control"
-               ng-model="student.lastName"
+               ng-model="applicant.lastName"
                placeholder="Last Name">
     </div>
 
     <div class="form-group">
         <input type="text"
                class="form-control"
-               ng-model="student.middleName"
+               ng-model="applicant.middleName"
                placeholder="Middle Name">
     </div>
 
     <div class="form-group">
         <input type="text"
                class="form-control"
-               ng-model="student.phone"
+               ng-model="applicant.phone"
                placeholder="Phone">
     </div>
 
     <div class="form-group">
         <select class="form-control"
-                ng-model="student.gender" convert-to-number>
+                ng-model="applicant.gender" convert-to-number>
             <option value="0";>Male</option>
             <option value="1">Female</option>
         </select>
@@ -44,7 +44,7 @@
 
     <div class="form-group">
         <select class="form-control"
-                ng-model="student.country"
+                ng-model="applicant.country"
                 ng-options="country as country.name for country in countries track by country.id">
         </select>
     </div>
